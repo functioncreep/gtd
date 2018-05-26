@@ -116,10 +116,9 @@ function gtdClarify() {
     gtdClarifyCount=`${gtdTaskExec} status:pending project: wait: count`
     gtdClarifyNext=`${gtdTaskExec} oldest project: wait: limit:1 | awk '{print $1}' | head -n1`
     gtdBanner "Clarify"
-    echo "Needing Clarify: ${gtdClarifyCount}"
+    echo "Tasks left to sort: ${gtdClarifyCount}"
     echo
-    echo "Next: ${gtdClarifyNext}"
-    ${gtdTaskExec} "${gtdClarifyNext}" long
+    echo -e "Task: ${gtdClarifyNext} - \e[38;5;178m\e[1m$(${gtdTaskExec} _get ${gtdClarifyNext}.description)\e[21m\e[0m"
     echo
     
     # Questions
