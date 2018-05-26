@@ -9,7 +9,7 @@
 ##########
 
 # [System]
-gtdBannerString="Lowbit Inspector"
+gtdBannerString="GTDbot"
 gtdAreas="Work Personal Financial Home Social Projects Other"
 gtdContexts="home work computer out"
 gtdRefreshInterval=30
