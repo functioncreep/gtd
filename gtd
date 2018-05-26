@@ -123,7 +123,7 @@ function gtdClarify() {
     
     # Questions
     echo "Options:"
-    select usrClarifyAction in "Action" "Someday" "Goal" "Habit" "Done" "Trash" "Quit"; do
+    select usrClarifyAction in "Action" "Someday" "Goal" "Habit" "Idea" "Note" "Done" "Trash" "Quit"; do
       case "${usrClarifyAction}" in
         "Action")
 
@@ -444,13 +444,13 @@ function gtdEngage() {
   while [ true ]; do
     ${gtdTaskExec} context "${usrEngageContext}"
     gtdBanner "Engage - Context: ${usrEngageContext}"
-    gtdQuery "${gtdEngageTodayTitle}" "ready +TODAY" "${gtdEngageTodayAmount}"
-    gtdQuery "${gtdEngageOverdueTitle}" "ready +OVERDUE" "${gtdEngageOverdueAmount}"
-    gtdQuery "${gtdEngageReadyTitle}" "ready" "${gtdEngageReadyAmount}"
-    gtdQuery "${gtdEngageTomorrowTitle}" "ready +TOMORROW -CHILD" "${gtdEngageTomorrowAmount}"
-    gtdQuery "${gtdEngageWeekTitle}" "ready +WEEK -CHILD -OVERDUE" "${gtdEngageWeekAmount}"
-    gtdQuery "${gtdEngageMonthTitle}" "ready +MONTH -CHILD -OVERDUE" "${gtdEngageMonthAmount}"
-    gtdQuery "${gtdEngageYearTitle}" "ready +YEAR -CHILD -OVERDUE" "${gtdEngageYearAmount}"
+    gtdQuery "${gtdEngageTodayTitle}" "description +TODAY" "${gtdEngageTodayAmount}" "\e[38;5;178m"
+    gtdQuery "${gtdEngageOverdueTitle}" "description +OVERDUE" "${gtdEngageOverdueAmount}" "\e[38;5;196m"
+    gtdQuery "${gtdEngageReadyTitle}" "description" "${gtdEngageReadyAmount}" "\e[38;5;45m"
+    gtdQuery "${gtdEngageTomorrowTitle}" "description +TOMORROW -CHILD" "${gtdEngageTomorrowAmount}" "\e[0m"
+    gtdQuery "${gtdEngageWeekTitle}" "description +WEEK -CHILD -OVERDUE" "${gtdEngageWeekAmount}" "\e[0m"
+    gtdQuery "${gtdEngageMonthTitle}" "description +MONTH -CHILD -OVERDUE" "${gtdEngageMonthAmount}" "\e[0m"
+    gtdQuery "${gtdEngageYearTitle}" "description +YEAR -CHILD -OVERDUE" "${gtdEngageYearAmount}" "\e[0m"
 
     sleep ${gtdRefreshInterval}
   done
@@ -460,13 +460,14 @@ function gtdQuery() {
   queryTitle=$1
   queryFilter=$2
   queryAmount=$3
+  colorString=$4
 
   if [ ${queryAmount} -le 0 ]; then
     return
   fi
 
   echo "=> ${queryTitle} (${queryAmount}) <="
-  ${gtdTaskExec} ${queryFilter} limit:${queryAmount}
+  echo -e " + ${colorString}\e[1m$(${gtdTaskExec} ${queryFilter} limit:${queryAmount})\e[21m\e[0m"
   echo
 }
 
