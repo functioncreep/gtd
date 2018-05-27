@@ -520,7 +520,7 @@ function gtdQuery() {
   fi
 
   echo "=> ${queryTitle} (${queryAmount}) <="
-  echo -e " + ${colorString}\e[1m$(${gtdTaskExec} ${queryFilter} limit:${queryAmount})\e[21m\e[0m"
+  echo -e "${colorString}\e[1m$(${gtdTaskExec} ${queryFilter} limit:${queryAmount})\e[21m\e[0m"
   echo
 }
 
