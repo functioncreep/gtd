@@ -291,40 +291,41 @@ function gtdClarify() {
                 break
                 ;;
               "No")
-                break
-                ;;
-            esac
-          done
+                
+                echo "Any extra notes to add?"
+                select usrClarifyNotes in "Yes" "No"; do
+                  case ${usrClarifyNotes} in
+                    "Yes")
+                      # task ${gtdClarifyNext} modify +next
 
-          echo "Any extra notes to add?"
-          select usrClarifyNotes in "Yes" "No"; do
-            case ${usrClarifyNotes} in
-              "Yes")
-                # task ${gtdClarifyNext} modify +next
+                      # Letting the user input its 'tasks' to the Inbox of Task Warrior
+                      echo "Type your notes out below (when you're done, type '${gtdTerminatorString}') "
+                      while [ "${usrNoteString}" != "${gtdTerminatorString}" ]; do
 
-                # Letting the user input its 'tasks' to the Inbox of Task Warrior
-                echo "Type your notes out below (when you're done, type '${gtdTerminatorString}') "
-                while [ "${usrNoteString}" != "${gtdTerminatorString}" ]; do
+                        read -p "Note: " usrNoteString
 
-                  read -p "Note: " usrNoteString
+                        case "${usrNoteString}" in
+                          "")
+                            echo "Nothing? If you're done, type '${gtdTerminatorString}'"
+                            ;;
+                          "${gtdTerminatorString}")
+                            break
+                            ;;
+                          *)
+                            ${gtdTaskExec} ${gtdClarifyNext} annotate "${usrNoteString}"
+                            ;;
+                        esac
 
-                  case "${usrNoteString}" in
-                    "")
-                      echo "Nothing? If you're done, type '${gtdTerminatorString}'"
-                      ;;
-                    "${gtdTerminatorString}")
+                      done
+
                       break
                       ;;
-                    *)
-                      ${gtdTaskExec} ${gtdClarifyNext} annotate "${usrNoteString}"
+                    "No")
+                      break
                       ;;
                   esac
-
                 done
 
-                break
-                ;;
-              "No")
                 break
                 ;;
             esac
