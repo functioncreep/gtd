@@ -287,7 +287,25 @@ function gtdClarify() {
           select usrClarify5Minutes in "Yes" "No"; do
             case ${usrClarify5Minutes} in
               "Yes")
-                task ${gtdClarifyNext} modify +next
+                # task ${gtdClarifyNext} modify +next
+
+                echo "Okay, so go get it done!"
+                while [ "${usrDoneString}" != "${gtdTerminatorString}" ]; do
+                
+                  read -p "Type '${gtdTerminatorString}' when you've finished. I'll wait... " usrDoneString
+
+                  case "${usrDoneString}" in
+                    "${gtdTerminatorString}")
+                      task ${gtdClarifyNext} "done"
+                      echo
+                      echo "Nice! Now to move on..."
+                      sleep 3 &&
+                      break
+                      ;;
+                  esac
+
+                done
+
                 break
                 ;;
               "No")
