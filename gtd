@@ -283,7 +283,7 @@ function gtdClarify() {
             esac
           done
 
-          echo "Can it be done in 5 Minutes or less?"
+          echo "Can it be done in 2 Minutes or less?"
           select usrClarify5Minutes in "Yes" "No"; do
             case ${usrClarify5Minutes} in
               "Yes")
