@@ -11,7 +11,7 @@
 # [System]
 gtdBannerString="GTDbot"
 gtdAreas="Work Personal Financial Home Social Projects Other"
-gtdContexts="home work computer out"
+gtdContexts="home work computer out any"
 gtdRefreshInterval=30
 gtdTaskExec="task rc.verbose=nothing"
 gtdTerminatorString="done"
