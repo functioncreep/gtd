@@ -299,6 +299,7 @@ function gtdClarify() {
                       task ${gtdClarifyNext} "done"
                       echo
                       echo "Nice! Now to move on..."
+                      usrDoneString=""
                       sleep 3 &&
                       break
                       ;;
