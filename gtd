@@ -498,13 +498,13 @@ function gtdEngage() {
   while [ true ]; do
     ${gtdTaskExec} context "${usrEngageContext}"
     gtdBanner "Engage - Context: ${usrEngageContext}"
-    gtdQuery "${gtdEngageTodayTitle}" "description +TODAY" "${gtdEngageTodayAmount}" "\e[38;5;178m"
-    gtdQuery "${gtdEngageOverdueTitle}" "description +OVERDUE" "${gtdEngageOverdueAmount}" "\e[38;5;196m"
-    gtdQuery "${gtdEngageReadyTitle}" "description" "${gtdEngageReadyAmount}" "\e[38;5;45m"
-    gtdQuery "${gtdEngageTomorrowTitle}" "description +TOMORROW -CHILD" "${gtdEngageTomorrowAmount}" "\e[0m"
-    gtdQuery "${gtdEngageWeekTitle}" "description +WEEK -CHILD -OVERDUE" "${gtdEngageWeekAmount}" "\e[0m"
-    gtdQuery "${gtdEngageMonthTitle}" "description +MONTH -CHILD -OVERDUE" "${gtdEngageMonthAmount}" "\e[0m"
-    gtdQuery "${gtdEngageYearTitle}" "description +YEAR -CHILD -OVERDUE" "${gtdEngageYearAmount}" "\e[0m"
+    gtdQuery "${gtdEngageTodayTitle}" "engage status:pending +TODAY" "${gtdEngageTodayAmount}" "\e[38;5;178m"
+    gtdQuery "${gtdEngageOverdueTitle}" "engage status:pending +OVERDUE" "${gtdEngageOverdueAmount}" "\e[38;5;196m"
+    gtdQuery "${gtdEngageReadyTitle}" "engage status:pending" "${gtdEngageReadyAmount}" "\e[38;5;45m"
+    gtdQuery "${gtdEngageTomorrowTitle}" "engage status:pending +TOMORROW -CHILD" "${gtdEngageTomorrowAmount}" "\e[0m"
+    gtdQuery "${gtdEngageWeekTitle}" "engage status:pending +WEEK -CHILD -OVERDUE" "${gtdEngageWeekAmount}" "\e[0m"
+    gtdQuery "${gtdEngageMonthTitle}" "engage status:pending +MONTH -CHILD -OVERDUE" "${gtdEngageMonthAmount}" "\e[0m"
+    gtdQuery "${gtdEngageYearTitle}" "engage status:pending +YEAR -CHILD -OVERDUE" "${gtdEngageYearAmount}" "\e[0m"
 
     sleep ${gtdRefreshInterval}
   done
